@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { GlobalStyles } from './global-styles'
+import { GlobalStyles } from '../styles/global-styles'
 
 function MyApp({ Component, pageProps }) {
 	return (
