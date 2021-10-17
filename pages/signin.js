@@ -1,9 +1,47 @@
-import React from 'react'
+import { useState } from 'react'
+import { Form } from '../components'
+import { HeaderContainer } from '../containers/header'
 
-export default function signin() {
+export default function Signin() {
+	const [error, setError] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	const handleSignin = (e) => {
+		e.preventDefault()
+		// call in here to supabase to authenticate the user
+		// if there's an error, populate the error state
+	}
+
 	return (
-		<div>
-			<h2>sign In</h2>
-		</div>
+		<HeaderContainer>
+			<Form>
+				<Form.Title>Sign In</Form.Title>
+				{error && <Form.Error>{error}</Form.Error>}
+
+				<Form.Base onSubmit={handleSignin} method="POST">
+					<Form.Input
+						placeholder="Email address"
+						value={email}
+						onChange={({ target }) => setEmailAddress(target.value)}
+					/>
+					<Form.Input
+						type="password"
+						value={password}
+						autoComplete="off"
+						placeholder="Password"
+						onChange={({ target }) => setPassword(target.value)}
+					/>
+					<Form.Submit disabled={false} type="submit">
+						Sign In
+					</Form.Submit>
+
+					<Form.Text>
+						New to Netflix? <Form.MyLink href="/signup">Sign up now.</Form.MyLink>
+					</Form.Text>
+					<Form.TextSmall>This page is protected by Google reCAPTCHA.</Form.TextSmall>
+				</Form.Base>
+			</Form>
+		</HeaderContainer>
 	)
 }
