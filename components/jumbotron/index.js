@@ -23,5 +23,5 @@ Jumbotron.Pane = function JumbotronPane({ children, ...restProps }) {
 	return <Pane {...restProps}>{children}</Pane>
 }
 Jumbotron.Image = function JumbotronImage({ ...restProps }) {
-	return <Image {...restProps} />
+	return <Image {...restProps} alt="jumbo" />
 }
