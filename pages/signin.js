@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Form } from '../components'
 import { HeaderContainer } from '../containers/header'
+import { FooterContainer } from '../containers/footer'
 
 export default function Signin() {
 	const [error, setError] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+	const isInvalid = (password === '') | (email === '')
 
 	const handleSignin = (e) => {
 		e.preventDefault()
@@ -14,34 +17,37 @@ export default function Signin() {
 	}
 
 	return (
-		<HeaderContainer>
-			<Form>
-				<Form.Title>Sign In</Form.Title>
-				{error && <Form.Error>{error}</Form.Error>}
+		<>
+			<HeaderContainer>
+				<Form>
+					<Form.Title>Sign In</Form.Title>
+					{error && <Form.Error>{error}</Form.Error>}
 
-				<Form.Base onSubmit={handleSignin} method="POST">
-					<Form.Input
-						placeholder="Email address"
-						value={email}
-						onChange={({ target }) => setEmailAddress(target.value)}
-					/>
-					<Form.Input
-						type="password"
-						value={password}
-						autoComplete="off"
-						placeholder="Password"
-						onChange={({ target }) => setPassword(target.value)}
-					/>
-					<Form.Submit disabled={false} type="submit">
-						Sign In
-					</Form.Submit>
+					<Form.Base onSubmit={handleSignin} method="POST">
+						<Form.Input
+							placeholder="Email address"
+							value={email}
+							onChange={({ target }) => setEmail(target.value)}
+						/>
+						<Form.Input
+							type="password"
+							value={password}
+							autoComplete="off"
+							placeholder="Password"
+							onChange={({ target }) => setPassword(target.value)}
+						/>
+						<Form.Submit disabled={isInvalid} type="submit">
+							Sign In
+						</Form.Submit>
 
-					<Form.Text>
-						New to Netflix? <Form.MyLink href="/signup">Sign up now.</Form.MyLink>
-					</Form.Text>
-					<Form.TextSmall>This page is protected by Google reCAPTCHA.</Form.TextSmall>
-				</Form.Base>
-			</Form>
-		</HeaderContainer>
+						<Form.Text>
+							New to Netflix? <Form.MyLink href="/signup">Sign up now.</Form.MyLink>
+						</Form.Text>
+						<Form.TextSmall>This page is protected by Google reCAPTCHA.</Form.TextSmall>
+					</Form.Base>
+				</Form>
+			</HeaderContainer>
+			<FooterContainer />
+		</>
 	)
 }
