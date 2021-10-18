@@ -3,15 +3,17 @@ import { FooterContainer } from '../containers/footer'
 import { HeaderContainer } from '../containers/header'
 import { Form } from '../components'
 import Router from 'next/router'
+// import useAuth Hook
+// import { useAuth } from '../context/Auth'
 
-export default function Signin() {
+export default function Register() {
 	const [error, setError] = useState('')
 	// const router = useRouter()
-	const loginUser = async (event) => {
+	const registerUser = async (event) => {
 		event.preventDefault()
 		// call default function in pages/api/register
 		// send the email and password from form submission event to that endpoint
-		const res = await fetch('/api/login', {
+		const res = await fetch('/api/register', {
 			body: JSON.stringify({
 				email: event.target.email.value,
 				password: event.target.password.value,
@@ -26,14 +28,35 @@ export default function Signin() {
 		if (user) Router.push('/browse')
 	}
 
+	// const emailRef = useRef()
+	// const passwordRef = useRef()
+	// const [error, setError] = useState('')
+
+	//const isInvalid = passwordRef === '' || emailRef
+
+	// Get signUp function from the auth context
+	// const { signUp } = useAuth()
+
+	// async function handleSubmit(e) {
+	// 	e.preventDefault()
+	// 	const email = emailRef.current.value
+	// 	const password = passwordRef.current.value
+	// 	const { error } = await signUp({ email, password })
+	// 	if (error) {
+	// 		alert('error signing in')
+	// 	} else {
+	// 		Router.push('/browse')
+	// 	}
+	// }
+
 	return (
 		<>
 			<HeaderContainer>
 				<Form>
-					<Form.Title>Sign in</Form.Title>
+					<Form.Title>Register</Form.Title>
 					{error && <Form.Error>{error}</Form.Error>}
 
-					<Form.Base onSubmit={loginUser} method="POST">
+					<Form.Base onSubmit={registerUser} method="POST">
 						<label htmlFor="email">Email</label>
 						<Form.Input id="email" name="email" required placeholder="Email Address" />
 
@@ -45,10 +68,10 @@ export default function Signin() {
 							autoComplete="off"
 							placeholder="Password"
 						/>
-						<Form.Submit type="submit">Log in</Form.Submit>
+						<Form.Submit type="submit">Register</Form.Submit>
 
 						<Form.Text>
-							Need to register? <Form.MyLink href="/signup">Sign up</Form.MyLink>
+							Already a user? <Form.MyLink href="/signin">Log in now.</Form.MyLink>
 						</Form.Text>
 						<Form.TextSmall>This page is protected by Google reCAPTCHA.</Form.TextSmall>
 					</Form.Base>

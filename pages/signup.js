@@ -13,6 +13,7 @@ export default function Signup() {
 
 	const handleSignup = (event) => {
 		event.preventDefault()
+		// todo: supabase.signUp()
 	}
 
 	return (
@@ -45,7 +46,7 @@ export default function Signup() {
 						</Form.Submit>
 
 						<Form.Text>
-							Already a user? <Form.MyLink href="/signin">Sign up now.</Form.MyLink>
+							Already a user? <Form.MyLink href="/signin">Log in now.</Form.MyLink>
 						</Form.Text>
 						<Form.TextSmall>This page is protected by Google reCAPTCHA.</Form.TextSmall>
 					</Form.Base>
