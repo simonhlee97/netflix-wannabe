@@ -20,4 +20,15 @@ export const GlobalStyles = createGlobalStyle`
     a:hover {
         color: white;
     }
+    .about-flex-item {
+        margin: 4px;
+    }
+    .about-list-item:hover {
+        color: blue;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    .disabled-link {
+        pointer-events: none;
+    }
 `

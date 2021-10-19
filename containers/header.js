@@ -1,10 +1,13 @@
 import { Header } from '../components'
+import Link from 'next/link'
 
 export function HeaderContainer({ children }) {
 	return (
 		<Header>
 			<Header.Frame>
-				<Header.Logo src="/images/misc/logo.svg" alt="Netflix" />
+				<Link href="/">
+					<Header.Logo src="/images/misc/logo.svg" alt="Netflix" />
+				</Link>
 				<Header.ButtonLink style={{ color: 'red' }} href="/signin">
 					Sign In
 				</Header.ButtonLink>
