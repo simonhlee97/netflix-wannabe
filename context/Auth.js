@@ -2,7 +2,10 @@ import { useContext, useState, useEffect, createContext } from 'react'
 import { supabase } from '../utils/supbase'
 
 const AuthContext = createContext()
-
+export function useAuth() {
+	return useContext(AuthContext)
+}
+// https://ruanmartinelli.com/posts/supabase-authentication-react
 export function AuthProvider({ children }) {
 	const [user, setUser] = useState()
 	const [loading, setLoading] = useState(true)
@@ -34,9 +37,4 @@ export function AuthProvider({ children }) {
 	}
 
 	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>
-}
-
-// create useAuth hook
-export function useAuth() {
-	return useContext(AuthContext)
 }

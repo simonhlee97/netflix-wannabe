@@ -3,55 +3,50 @@ import { FooterContainer } from '../containers/footer'
 import { HeaderContainer } from '../containers/header'
 import { Form } from '../components'
 import Router from 'next/router'
+import { Auth, Typography, Button } from '@supabase/ui'
+import { supabase } from '../utils/supbaseClient'
+import { Header, Profiles } from '../components'
+
+const Container = (props) => {
+	const { user } = Auth.useUser()
+
+	if (user)
+		return (
+			<>
+				<Profiles>
+					<Profiles.Title>Who is watching?</Profiles.Title>
+					<Profiles.List>
+						<Profiles.User
+							onClick={() =>
+								setProfile({
+									displayName: 'Bob',
+									photoURL: '1',
+								})
+							}>
+							<Profiles.Picture src="1" />
+							<Profiles.Name>Bob</Profiles.Name>
+						</Profiles.User>
+					</Profiles.List>
+				</Profiles>
+				<Typography.Text>Signed in: {user.email}</Typography.Text>
+				<Button block onClick={() => props.supabaseClient.auth.signOut()}>
+					Sign out
+				</Button>
+			</>
+		)
+
+	return props.children
+}
 
 export default function Signin() {
-	const [error, setError] = useState('')
-	// const router = useRouter()
-	const loginUser = async (event) => {
-		event.preventDefault()
-		// call default function in pages/api/register
-		// send the email and password from form submission event to that endpoint
-		const res = await fetch('/api/login', {
-			body: JSON.stringify({
-				email: event.target.email.value,
-				password: event.target.password.value,
-			}),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			method: 'POST',
-		})
-		const { user } = await res.json()
-		// if (user) Router.push(`/welcome?email${user.email}`)
-		if (user) Router.push('/browse')
-	}
-
 	return (
 		<>
 			<HeaderContainer>
 				<Form>
-					<Form.Title>Sign in</Form.Title>
-					{error && <Form.Error>{error}</Form.Error>}
-
-					<Form.Base onSubmit={loginUser} method="POST">
-						<label htmlFor="email">Email</label>
-						<Form.Input id="email" name="email" required placeholder="Email Address" />
-
-						<label htmlFor="password">Password</label>
-						<Form.Input
-							type="password"
-							name="password"
-							required
-							autoComplete="off"
-							placeholder="Password"
-						/>
-						<Form.Submit type="submit">Log in</Form.Submit>
-
-						<Form.Text>
-							Need to register? <Form.MyLink href="/signup">Sign up</Form.MyLink>
-						</Form.Text>
-						<Form.TextSmall>This page is protected by Google reCAPTCHA.</Form.TextSmall>
-					</Form.Base>
+					<Container supabaseClient={supabase}>
+						<Form.Title>Log in / Sign up</Form.Title>
+						<Auth supabaseClient={supabase} />
+					</Container>
 				</Form>
 			</HeaderContainer>
 			<FooterContainer />

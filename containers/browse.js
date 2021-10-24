@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Header } from '../components'
 // import { FirebaseContext } from '../context/firebase'
 import { SelectProfileContainer } from './profiles'
@@ -8,6 +8,9 @@ export function BrowseContainer() {
 	const [category, setCategory] = useState('series')
 	const [profile, setProfile] = useState({})
 	const [loading, setLoading] = useState(true)
+	const [searchTerm, setSearchTerm] = useState('')
+
+	// const { firebase } = useContext(FirebaseContext);
 
 	const user = {
 		displayName: 'Tester',
@@ -19,7 +22,7 @@ export function BrowseContainer() {
 			<Header src="joker1" dontShowOnSmallViewPort>
 				<Header.Frame>
 					<Header.Group>
-						<Header.Logo to="/" src="/images/misc/logo.svg" alt="Netflix" />
+						<Header.Logo href="/" src="/images/misc/logo.svg" alt="Netflix" />
 						<Header.Link
 							active={category === 'series' ? 'true' : 'false'}
 							onClick={() => setCategory('series')}>
