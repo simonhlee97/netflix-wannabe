@@ -5,12 +5,8 @@ export function HeaderContainer({ children }) {
 	return (
 		<Header>
 			<Header.Frame>
-				<Link href="/" passHref>
-					<Header.Logo href="/" src="/images/misc/logo.svg" alt="Netflix" />
-				</Link>
-				<Header.ButtonLink style={{ color: 'red' }} href="/signin">
-					Sign In
-				</Header.ButtonLink>
+				<Header.Logo href="/" src="/images/misc/logo.svg" alt="Netflix" />
+				<Link href="/signin">Sign In</Link>
 			</Header.Frame>
 			{children}
 		</Header>

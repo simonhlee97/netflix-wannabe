@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
-// import { Link as ReachRouterLink } from 'react-router-dom'
-
 export const Container = styled.section`
 	display: flex;
 	flex-direction: column;

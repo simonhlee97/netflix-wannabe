@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-
 import {
 	Group,
 	Background,
 	MyLink,
+	Profile,
 	Text,
+	Dropdown,
+	Picture,
 	Container,
 	Logo,
-	ButtonLink,
+	// ButtonLink,
 	Feature,
 	FeatureCallOut,
 	PlayButton,
@@ -49,9 +51,9 @@ Header.Search = function HeaderSearch({ searchTerm, setSearchTerm, ...restProps 
 
 Header.Logo = function HeaderLogo({ href, ...restProps }) {
 	return (
-		<Link href={href} passHref>
+		<div>
 			<Logo {...restProps} />
-		</Link>
+		</div>
 	)
 }
 
@@ -63,9 +65,9 @@ Header.MyLink = function HeaderMyLink({ children, ...restProps }) {
 	return <MyLink {...restProps}>{children}</MyLink>
 }
 
-Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
-	return <ButtonLink {...restProps}>{children}</ButtonLink>
-}
+// Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
+// 	return <ButtonLink {...restProps}>{children}</ButtonLink>
+// }
 
 Header.Feature = function HeaderFeature({ children, ...restProps }) {
 	return <Feature {...restProps}>{children}</Feature>
@@ -77,4 +79,16 @@ Header.FeatureCallOut = function HeaderFeatureCallOut({ children, ...restProps }
 
 Header.PlayButton = function HeaderPlayButton({ children, ...restProps }) {
 	return <PlayButton {...restProps}>{children}</PlayButton>
+}
+
+Header.Profile = function HeaderProfile({ children, ...restProps }) {
+	return <Profile {...restProps}>{children}</Profile>
+}
+
+Header.Picture = function HeaderPicture({ src, ...restProps }) {
+	return <Picture {...restProps} src={`/images/users/${src}.png`} />
+}
+
+Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
+	return <Dropdown {...restProps}>{children}</Dropdown>
 }
