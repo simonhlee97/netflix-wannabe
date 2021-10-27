@@ -3,6 +3,7 @@ import { Header, Loading, Card } from '../components'
 import Link from 'next/link'
 import Fuse from 'fuse.js'
 // import { FirebaseContext } from '../context/firebase'
+import { supabase } from '../utils/supbaseClient'
 import { SelectProfileContainer } from './profiles'
 import { FooterContainer } from './footer'
 
@@ -63,6 +64,11 @@ export function BrowseContainer({ slides }) {
 							onClick={() => setCategory('films')}>
 							<a>Films</a>
 						</Link>
+						<style jsx>{`
+							color: white;
+							text-decoration: none;
+							margin: 0 15px;
+						`}</style>
 					</Header.Group>
 					<Header.Group>
 						<Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -94,9 +100,51 @@ export function BrowseContainer({ slides }) {
 				</Header.Feature>
 			</Header>
 
+			<FilmsCardsList />
+
 			<FooterContainer />
 		</>
 	) : (
 		<SelectProfileContainer user={user} setProfile={setProfile} />
+	)
+}
+
+function FilmsCardsList() {
+	const [films, setFilms] = useState([])
+	const [film, setFilm] = useState({ title: '', description: '', genre: '', maturity: '' })
+	const { title, description, genre, maturity } = film
+
+	// const [searchTerm, setSearchTerm] = useState('')
+
+	// const slides = selectionMap({ films })
+
+	useEffect(() => {
+		fetchFilms()
+		// fetchSeries()
+	}, [])
+	async function fetchFilms() {
+		const { data } = await supabase.from('films').select()
+		setFilms(data)
+	}
+	return (
+		<div className="flex-film-container film-card">
+			{films.map((film) => (
+				<div className="flex-film-item" key={film.id}>
+					<h2 className="film-title">{film.title}</h2>
+					<div className="film-meta">
+						<p className="film-description">{film.description}</p>
+						<div>{film.genre}</div>
+					</div>
+				</div>
+			))}
+			<style jsx>
+				{`
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-image: url('/images/films/drama/${film.slug}/large.jpg');
+				`}
+			</style>
+		</div>
 	)
 }

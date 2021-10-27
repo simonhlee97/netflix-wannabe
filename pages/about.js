@@ -80,6 +80,9 @@ export default function About() {
 					Read more about this project...
 				</Link>
 			</p>
+			<p>
+				<Link href="https://github.com/simonhlee97/netflix-wannabe">Project Repo</Link>
+			</p>
 		</div>
 	)
 }
