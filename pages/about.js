@@ -20,26 +20,30 @@ export default function About() {
 				</Link>
 			</p>
 			<p>
+				I re-created the project (from a create-react-app the first time) to a Next.js app,
+				and instead of Firebase, tried out Supabase. Altogether, a fun learning experience.
+			</p>
+			<p>
 				created by{' '}
 				<Link className="about-link" href="https://github.com/simonhlee97">
 					<a>Simon Lee</a>
 				</Link>
 			</p>
-			<section style={{ maxWidth: '75vw', margin: '2em auto' }}>
-				<h3>Built with:</h3>
-				<div>
+			<section style={{ textAlign: 'center', maxWidth: '80vw', margin: '2em auto' }}>
+				<h2>Built with:</h2>
+				<div className="tech-logos">
 					<Link href="https://nextjs.org/" passHref>
 						<Image
-							src="https://pics.freeicons.io/uploads/icons/png/9114856761551941711-512.png"
+							src="/images/next.jpg"
 							alt="next"
 							className="about-list-item"
-							width="120"
-							height="120"
+							width="402"
+							height="210"
 						/>
 					</Link>
 				</div>
 
-				<div>
+				<div className="tech-logos">
 					<Link href="https://supabase.io/" passHref>
 						<Image
 							src="/images/supa.jpg"
@@ -51,7 +55,7 @@ export default function About() {
 					</Link>
 				</div>
 
-				<div>
+				<div className="tech-logos">
 					<Link href="https://vercel.com/" passHref>
 						<Image
 							src="/images/vercel.jpg"
@@ -63,7 +67,7 @@ export default function About() {
 					</Link>
 				</div>
 
-				<div>
+				<div className="tech-logos">
 					<Link href="https://styled-components.com/" passHref>
 						<Image
 							src="/images/styled.jpg"
