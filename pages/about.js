@@ -25,18 +25,9 @@ export default function About() {
 					<a>Simon Lee</a>
 				</Link>
 			</p>
-			<h3>Built with:</h3>
-			<ul
-				style={{
-					listStyleType: 'none',
-					display: 'flex',
-					flexWrap: 'wrap',
-					marginLeft: 'auto',
-					marginRight: 'auto',
-					width: '98%',
-					justifyContent: 'center',
-				}}>
-				<li className="about-flex-item">
+			<section style={{ maxWidth: '75vw', margin: '2em auto' }}>
+				<h3>Built with:</h3>
+				<div>
 					<Link href="https://nextjs.org/" passHref>
 						<Image
 							src="https://pics.freeicons.io/uploads/icons/png/9114856761551941711-512.png"
@@ -46,30 +37,44 @@ export default function About() {
 							height="120"
 						/>
 					</Link>
-				</li>
-				<li className="about-flex-item">
+				</div>
+
+				<div>
+					<Link href="https://supabase.io/" passHref>
+						<Image
+							src="/images/supa.jpg"
+							alt="supabase"
+							className="about-list-item"
+							width="471"
+							height="280"
+						/>
+					</Link>
+				</div>
+
+				<div>
 					<Link href="https://vercel.com/" passHref>
 						<Image
-							src="https://miro.medium.com/max/1200/1*oBm_3saYz4AI_MS6OekdFQ.png"
+							src="/images/vercel.jpg"
 							className="about-list-item"
-							width="248"
-							height="120"
+							width="600"
+							height="262"
 							alt="vercel"
 						/>
 					</Link>
-				</li>
-				<li className="about-flex-item">
+				</div>
+
+				<div>
 					<Link href="https://styled-components.com/" passHref>
 						<Image
-							src="https://styled-components.com/logo.png"
+							src="/images/styled.jpg"
 							className="about-list-item"
-							width="120"
-							height="120"
+							width="463"
+							height="354"
 							alt="styled"
 						/>
 					</Link>
-				</li>
-			</ul>
+				</div>
+			</section>
 			<p>
 				<Link className="about-link" href="/">
 					Back to project
