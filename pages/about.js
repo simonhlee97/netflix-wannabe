@@ -1,23 +1,28 @@
-import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const styles = {
-	backgroundColor: '#3D3D3D',
-	color: 'black',
-	textAlign: 'center',
-	paddingTop: '3em',
-	paddingBottom: '5em',
-}
-
 export default function About() {
 	return (
-		<div style={styles}>
+		<div>
+			<style jsx>
+				{`
+					background-color: navy;
+					text-align: center;
+					color: silver;
+					overflow-x: hidden;
+				`}
+			</style>
 			<h2>About This Project</h2>
+			<p>
+				The Netflix clone project is the last project in{' '}
+				<Link href="https://scrimba.com/" target="_blank">
+					Scrimba&apos;s Frontend Developer Career Path
+				</Link>
+			</p>
 			<p>
 				created by{' '}
 				<Link className="about-link" href="https://github.com/simonhlee97">
-					Simon Lee
+					<a>Simon Lee</a>
 				</Link>
 			</p>
 			<h3>Built with:</h3>
@@ -28,7 +33,7 @@ export default function About() {
 					flexWrap: 'wrap',
 					marginLeft: 'auto',
 					marginRight: 'auto',
-					width: '520px',
+					width: '98%',
 					justifyContent: 'center',
 				}}>
 				<li className="about-flex-item">
@@ -43,6 +48,17 @@ export default function About() {
 					</Link>
 				</li>
 				<li className="about-flex-item">
+					<Link href="https://vercel.com/" passHref>
+						<Image
+							src="https://miro.medium.com/max/1200/1*oBm_3saYz4AI_MS6OekdFQ.png"
+							className="about-list-item"
+							width="248"
+							height="120"
+							alt="vercel"
+						/>
+					</Link>
+				</li>
+				<li className="about-flex-item">
 					<Link href="https://styled-components.com/" passHref>
 						<Image
 							src="https://styled-components.com/logo.png"
@@ -53,21 +69,15 @@ export default function About() {
 						/>
 					</Link>
 				</li>
-				<li className="about-flex-item">
-					<Link href="https://vercel.com/" passHref>
-						<Image
-							src="https://miro.medium.com/max/1200/1*oBm_3saYz4AI_MS6OekdFQ.png"
-							className="about-list-item"
-							width="228"
-							height="120"
-							alt="vercel"
-						/>
-					</Link>
-				</li>
 			</ul>
 			<p>
 				<Link className="about-link" href="/">
-					Back to home
+					Back to project
+				</Link>
+			</p>
+			<p>
+				<Link className="about-project" href="https://simonpost.com/">
+					Read more about this project...
 				</Link>
 			</p>
 		</div>

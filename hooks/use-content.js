@@ -1,27 +1,18 @@
 import { useEffect, useState, useContext } from 'react'
-// import { FirebaseContext } from '../context/firebase'
+import { SupabaseContext } from '../context/supabaseContext';
 
 export default function useContent(target) {
 	const [content, setContent] = useState([])
-	// const { firebase } = useContext(FirebaseContext)
+	const { supabase } = useContext(SupabaseContext)
 
-	// useEffect(() => {
-	// 	firebase
-	// 		.firestore()
-	// 		.collection(target)
-	// 		.get()
-	// 		.then((snapshot) => {
-	// 			const allContent = snapshot.docs.map((contentObj) => ({
-	// 				...contentObj.data(),
-	// 				docId: contentObj.id,
-	// 			}))
-
-	// 			setContent(allContent)
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(error.message)
-	// 		})
-	// }, [])
-
-	return { [target]: content }
+	useEffect(() => {
+		async function fetchData() {
+			const { data, error } = await supabase
+				.from('films')
+				.select()
+				.catch((error) => {
+					console.log(error.message)
+				})
+		}
+	}
 }

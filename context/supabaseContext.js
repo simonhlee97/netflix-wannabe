@@ -1,19 +1,9 @@
-export const useSupabase = () => {
-	const context = React.useContext(SupabaseContext)
+import { createContext } from 'react'
 
-	if (context === undefined) {
-		throw new Error('useSupabase must be used within a SupabaseContext.Provider')
-	}
+export const SupabaseContext = createContext(null)
 
-	return context.sb
-}
+// export function DataProvider({ children }) {
 
-export const useUser = () => {
-	const context = React.useContext(SupabaseContext)
+// }
 
-	if (context === undefined) {
-		throw new Error('useSupabase must be used within a SupabaseContext.Provider')
-	}
-
-	return context.user
-}
+// below is example //

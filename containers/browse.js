@@ -1,15 +1,17 @@
 import { useState, useEffect, useContext } from 'react'
-import { Header, Loading } from '../components'
+import { Header, Loading, Card } from '../components'
 import Link from 'next/link'
+import Fuse from 'fuse.js'
 // import { FirebaseContext } from '../context/firebase'
 import { SelectProfileContainer } from './profiles'
 import { FooterContainer } from './footer'
 
-export function BrowseContainer() {
+export function BrowseContainer({ slides }) {
 	const [category, setCategory] = useState('series')
 	const [profile, setProfile] = useState({})
 	const [loading, setLoading] = useState(true)
 	const [searchTerm, setSearchTerm] = useState('')
+	// const [slideRows, setSlideRows] = useState([])
 
 	// const { firebase } = useContext(FirebaseContext);
 
@@ -17,6 +19,24 @@ export function BrowseContainer() {
 		displayName: 'Tester',
 		photoURL: '1',
 	}
+
+	const dumb = [
+		{
+			title: 'Forrest Gump',
+			description: 'Hello world welcome to netflix. Life is like a box of chocolates',
+			genre: 'drama',
+		},
+		{
+			title: 'Back to the Future',
+			description: 'I am marty McFly. I am time traveling',
+			genre: 'action',
+		},
+		{
+			title: 'Rocky',
+			description: 'There is no tomorrow. Apollo Creed is the champ',
+			genre: 'action',
+		},
+	]
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -73,6 +93,7 @@ export function BrowseContainer() {
 					<Header.PlayButton>Play</Header.PlayButton>
 				</Header.Feature>
 			</Header>
+
 			<FooterContainer />
 		</>
 	) : (
